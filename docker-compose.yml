@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  sanctus-events:
+    build: .
+    container_name: sanctus-events
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+      - VITE_AUTH0_DOMAIN=${VITE_AUTH0_DOMAIN}
+      - VITE_AUTH0_CLIENT_ID=${VITE_AUTH0_CLIENT_ID}
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
